@@ -22,6 +22,8 @@ group :test, :development do
   gem 'launchy'
   gem 'pry'
   gem 'capybara'
+  gem 'warden'
+  gem "factory_girl_rails", "~> 4.0"
 end
 
 group :test do
