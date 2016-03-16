@@ -1,11 +1,11 @@
-<h2>New Sentence</h2>
+<h2>Edit Sentence</h2>
 <%= image_tag @current_image %>
 
 <%= form_for [@story, @sentence] do |f| %>
-  <%= f.hidden_field :image_url, value: @current_image %>
+  <%= f.hidden_field :image_url, value: @sentence.image_url %>
   <%= f.hidden_field :user_id, value: current_user.id %>
   <%= f.hidden_field :story_id, value: story.id %>
   <%= f.label :content %>
   <%= f.text_field :content %>
-  <%= f.submit "Add sentence" %>
+  <%= f.submit "Edit sentence" %>
 <% end %>

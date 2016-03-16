@@ -4,7 +4,9 @@
 <% end %>
 <br /><br />
 <%= link_to 'Add new sentence', new_story_sentence_path(@story ) %>
-<br />
+<br /><br />
+
+<%= link_to 'Edit Story', edit_story_path(@story) %><br />
 <%= link_to(story_path(@story),
   data: {
     confirm: 'Delete story?',

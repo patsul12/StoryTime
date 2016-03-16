@@ -1,6 +1,6 @@
 class SentencesController < ApplicationController
-  before_action :set_sentence, only: [:show, :destroy]
-  before_action :set_story, only: [:show, :destroy]
+  before_action :set_sentence, only: [:show, :destroy, :edit, :update]
+  before_action :set_story, only: [:show, :destroy, :edit, :update]
 
   def index
   end
@@ -29,7 +29,7 @@ class SentencesController < ApplicationController
 
   def update
     if @sentence.update(sentence_params)
-      redirect_to story_sentence_path(@story, sentence)
+      redirect_to story_sentence_path(@story, @sentence)
     else
       render :edit
     end
@@ -54,7 +54,7 @@ class SentencesController < ApplicationController
   end
 
   def sentence_params
-    params.permit(:content, :user_id, :story_id, :image_url)
+    params.require('sentence').permit(:content, :user_id, :story_id, :image_url)
   end
 
 end

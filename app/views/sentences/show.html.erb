@@ -1,5 +1,7 @@
-<%= image_tag @sentence.image_url %>
-<%= @sentence.content %>
+<%= image_tag @sentence.image_url %><br />
+<%= @sentence.content %><br />
+
+<%= link_to 'Edit', edit_story_sentence_path(@story, @sentence) %><br />
 
 <%= link_to(story_sentence_path(@story, @sentence),
   data: {
