@@ -1,7 +1,7 @@
 <h1>Welcome to Story Time Fun Land Place Thing</h1>
 
 <% @stories.each do |story| %>
-  <%= link_to story.title, story_path(story) %>
+  <%= link_to story.title, story_path(story) %><br>
 <% end %>
 
 <br><br><%= link_to 'New Story', new_story_path %>

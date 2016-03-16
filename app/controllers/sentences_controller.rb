@@ -1,5 +1,6 @@
 class SentencesController < ApplicationController
-  before_action :set_sentence, only: [:show]
+  before_action :set_sentence, only: [:show, :destroy]
+  before_action :set_story, only: [:show, :destroy]
 
   def index
   end
@@ -27,15 +28,29 @@ class SentencesController < ApplicationController
   end
 
   def update
+    if @sentence.update(sentence_params)
+      redirect_to story_sentence_path(@story, sentence)
+    else
+      render :edit
+    end
   end
 
-  def delete
+  def destroy
+    if @sentence.destroy
+      redirect_to story_path(@story)
+    else
+      redirect_to story_path(@story)
+    end
   end
 
   private
 
   def set_sentence
     @sentence = Sentence.find(params[:id])
+  end
+
+  def set_story
+    @story = Story.find(params[:story_id])
   end
 
   def sentence_params

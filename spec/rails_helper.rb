@@ -9,9 +9,13 @@ require 'capybara/rails'
 require 'factory_girl_rails'
 require 'database_cleaner'
 
-DatabaseCleaner.strategy = :truncation
-
 ActiveRecord::Migration.maintain_test_schema!
+
+Capybara.register_driver :chrome do |app|
+  Capybara::Selenium::Driver.new(app, :browser => :chrome)
+end
+
+Capybara.javascript_driver = :chrome
 
 RSpec.configure do |config|
   config.fixture_path = "#{::Rails.root}/spec/fixtures"
@@ -21,6 +25,20 @@ RSpec.configure do |config|
   config.include Devise::TestHelpers, type: :controller
   config.include Warden::Test::Helpers
   config.include FactoryGirl::Syntax::Methods
+  config.use_transactional_fixtures = false
+
+  config.before :each do
+    if Capybara.current_driver == :rack_test
+      DatabaseCleaner.strategy = :transaction
+    else
+      DatabaseCleaner.strategy = :truncation
+    end
+    DatabaseCleaner.start
+  end
+
+  config.after do
+    DatabaseCleaner.clean
+  end
 
   config.before :suite do
     Warden.test_mode!

@@ -1,2 +1,9 @@
 <%= image_tag @sentence.image_url %>
 <%= @sentence.content %>
+
+<%= link_to(story_sentence_path(@story, @sentence),
+  data: {
+    confirm: 'Delete sentence?',
+    method: 'delete'}) do %>
+    Delete Sentence
+  <% end %>

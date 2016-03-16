@@ -1,7 +1,7 @@
 class StoriesController < ApplicationController
   before_action :authenticate_user!, except: [:show, :index]
   before_action :set_user, only: [:create]
-  before_action :set_story, only: [:show]
+  before_action :set_story, only: [:show, :destroy]
 
   def index
     @stories = Story.all
@@ -28,9 +28,19 @@ class StoriesController < ApplicationController
   end
 
   def update
+    if @story.update(story_params)
+      redirect_to story_path(@story)
+    else
+      render :edit
+    end
   end
 
   def destroy
+    if @story.destroy
+      redirect_to root_path
+    else
+      redirect_to stories_path(@story)
+    end
   end
 
   private
