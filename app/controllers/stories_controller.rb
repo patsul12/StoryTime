@@ -8,6 +8,7 @@ class StoriesController < ApplicationController
   end
 
   def show
+    @sentences = @story.sentences
   end
 
   def new
