@@ -5,6 +5,7 @@ class SentencesController < ApplicationController
   end
 
   def new
+    @current_image = Dir.new(Rails.root.to_s + "/app/assets/images").to_a.select{|f|    f.downcase.match(/\.jpg|\.jpeg|\.png/) }.sample
     @story = Story.find(params[:story_id])
     @sentence = Sentence.new
   end

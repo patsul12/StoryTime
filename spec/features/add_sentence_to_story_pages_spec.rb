@@ -8,7 +8,6 @@ describe 'the add sentence to a story process' do
     visit story_path(story)
     click_link 'Add new sentence'
     fill_in 'content', with: 'This is a test sentence.'
-    fill_in 'image_url', with: 'http://lorempixel.com/400/200/'
     click_button 'Add sentence'
     expect(page).to have_content('This is a test sentence.')
     click_link 'This is a test sentence.'

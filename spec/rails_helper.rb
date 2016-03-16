@@ -7,6 +7,9 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rails'
 require 'factory_girl_rails'
+require 'database_cleaner'
+
+DatabaseCleaner.strategy = :truncation
 
 ActiveRecord::Migration.maintain_test_schema!
 
@@ -25,6 +28,7 @@ RSpec.configure do |config|
 
   config.after :each do
     Warden.test_reset!
+    DatabaseCleaner.clean
   end
 end
 

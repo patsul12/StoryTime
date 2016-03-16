@@ -1,9 +1,11 @@
 <h2>New Sentence</h2>
+<%= image_tag @current_image %>
 
 <%= form_tag(controller: "sentences", action: "create", method: "post") do %>
+  <%= hidden_field_tag :image_url, @current_image %>
   <%= hidden_field_tag :user_id, current_user.id %>
   <%= hidden_field_tag :story_id, story.id %>
-  <%= text_area_tag :content %>
-  <%= text_area_tag :image_url %>
+  <%= label_tag :content %>
+  <%= text_field_tag :content %>
   <%= submit_tag "Add sentence" %>
 <% end %>

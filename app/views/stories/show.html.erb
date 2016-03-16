@@ -1,6 +1,6 @@
 <h1><%= @story.title %></h1>
-<%= @sentences.each do |sentence| %>
+<% @sentences.each do |sentence| %>
   <%= link_to sentence.content, story_sentence_path(@story, sentence) %>
 <% end %>
-
+<br /><br />
 <%= link_to 'Add new sentence', new_story_sentence_path(@story) %>
