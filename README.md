@@ -1,4 +1,4 @@
-# hn-clone
+# Story Time
 
 Crowd sourced story telling app.
 
